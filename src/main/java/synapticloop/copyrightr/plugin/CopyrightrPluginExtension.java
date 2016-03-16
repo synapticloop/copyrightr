@@ -1,8 +1,5 @@
 package synapticloop.copyrightr.plugin;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
  * Copyright (c) 2016 synapticloop.
  * 
@@ -19,11 +16,15 @@ import java.util.List;
  * this source code or binaries.
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CopyrightrPluginExtension {
 	private List<String> patterns = new ArrayList<String>(); 
 	private List<String> includes = new ArrayList<String>();
 	private List<String> excludes = new ArrayList<String>();
 	private boolean dryRun = false;
+	private boolean onlyReplaceFirst = true;
 
 	public List<String> getExcludes() {
 		return excludes;
@@ -55,5 +56,13 @@ public class CopyrightrPluginExtension {
 
 	public void setDryRun(boolean dryRun) {
 		this.dryRun = dryRun;
+	}
+
+	public boolean getOnlyReplaceFirst() {
+		return onlyReplaceFirst;
+	}
+
+	public void setOnlyReplaceFirst(boolean onlyReplaceFirst) {
+		this.onlyReplaceFirst = onlyReplaceFirst;
 	}
 }

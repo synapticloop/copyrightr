@@ -110,8 +110,12 @@ public class Parser {
 				i++;
 			}
 
-			if(fileMatch && !dryRun) {
-				FileUtils.writeLines(file, readLines, false);
+			if(fileMatch) {
+				if(!dryRun) {
+					FileUtils.writeLines(file, readLines, false);
+				}
+			} else {
+				logger.warn(String.format("Could not find copyright in file '%s'.", file.getName()));
 			}
 
 		} catch (IOException ex) {

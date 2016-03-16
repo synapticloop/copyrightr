@@ -3,8 +3,10 @@ package synapticloop.copyrightr;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -26,6 +28,8 @@ public class Parser {
 	private FileTree asFileTree;
 
 	private List<Pattern> compiledPatterns = new ArrayList<Pattern>();
+
+	private static final String THIS_YEAR = Calendar.getInstance().getDisplayName(Calendar.YEAR, Calendar.LONG, Locale.ENGLISH);
 
 
 	public Parser(Project project, List<String> patterns, List<String> includes, List<String> excludes, boolean dryRun) {
@@ -64,7 +68,7 @@ public class Parser {
 			List<String> readLines = FileUtils.readLines(file);
 			int i = 0;
 			for (String line : readLines) {
-				
+
 				for (Pattern pattern : compiledPatterns) {
 					Matcher matcher = pattern.matcher(line);
 
@@ -74,11 +78,19 @@ public class Parser {
 						String group = matcher.group(groupCount);
 						int regionStart = matcher.start(groupCount);
 						int regionEnd = matcher.end(groupCount);
-						String conversionLine = line.substring(0, regionStart) + group + "-2017" + line.substring(regionEnd);
 
-						readLines.set(i, conversionLine);
+						if(THIS_YEAR.equals(group)) {
 
-						project.getLogger().info("Converting line from '" + line + "' to '" + conversionLine + "'.");
+							project.getLogger().info(String.format("Not replacing line - the year is current: %s", line));
+							String conversionLine = String.format("%s%s-%s%s", line.substring(0, regionStart), group, THIS_YEAR, line.substring(regionEnd));
+							if(dryRun) {
+								project.getLogger().warn(String.format("Dry run, not replacing %s with %s", line, conversionLine));
+							}
+							readLines.set(i, conversionLine);
+
+							project.getLogger().info(String.format("Converting line from '%s' to '%s'", line, conversionLine));
+						}
+
 					}
 				}
 				i++;

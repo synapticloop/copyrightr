@@ -23,7 +23,7 @@ public class CopyrightrPluginExtension {
 	private List<String> patterns = new ArrayList<String>(); 
 	private List<String> includes = new ArrayList<String>();
 	private List<String> excludes = new ArrayList<String>();
-
+	private boolean dryRun = false;
 
 	public List<String> getExcludes() {
 		return excludes;
@@ -47,5 +47,13 @@ public class CopyrightrPluginExtension {
 
 	public void setPatterns(List<String> patterns) {
 		this.patterns = patterns;
+	}
+
+	public boolean getDryRun() {
+		return dryRun;
+	}
+
+	public void setDryRun(boolean dryRun) {
+		this.dryRun = dryRun;
 	}
 }

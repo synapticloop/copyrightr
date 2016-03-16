@@ -1,5 +1,8 @@
 package synapticloop.copyrightr.plugin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * Copyright (c) 2016 synapticloop.
  * 
@@ -23,6 +26,15 @@ import synapticloop.copyrightr.Parser;
 import synapticloop.copyrightr.exception.CopyrightrException;
 
 public class CopyrightrTask extends DefaultTask {
+	private static final List<String> DEFAULT_INCLUDES_LIST = new ArrayList<String>();
+	private static final List<String> DEFAULT_PATTERNS = new ArrayList<String>();
+
+	static {
+		DEFAULT_INCLUDES_LIST.add("src/**/*.java");
+		DEFAULT_INCLUDES_LIST.add("src/**/*.groovy");
+
+		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4}).*");
+	}
 
 	@TaskAction
 	public void generate() throws CopyrightrException {
@@ -32,7 +44,15 @@ public class CopyrightrTask extends DefaultTask {
 			extension = new CopyrightrPluginExtension();
 		}
 
-		Parser parser = new Parser(getProject(), extension.getPatterns(), extension.getIncludes(), extension.getExcludes());
+		if(extension.getIncludes().isEmpty()) {
+			extension.setIncludes(DEFAULT_INCLUDES_LIST);
+		}
+
+		if(extension.getPatterns().isEmpty()) {
+			extension.setPatterns(DEFAULT_PATTERNS);
+		}
+
+		Parser parser = new Parser(getProject(), extension.getPatterns(), extension.getIncludes(), extension.getExcludes(), extension.getDryRun());
 		parser.parse();
 	}
 }

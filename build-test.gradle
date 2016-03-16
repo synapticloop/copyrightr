@@ -44,8 +44,8 @@ repositories {
 }
 
 copyrightr {
-	includes: [ "src/test/resources/*.test.txt" ]
-	dryRun: true
+	includes = [ "src/test/resources/test-files/*.txt" ]
+	dryRun = true
 }
 
 // now for all of the dependencies

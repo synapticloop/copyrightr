@@ -34,12 +34,13 @@ public class CopyrightrTask extends DefaultTask {
 		DEFAULT_INCLUDES_LIST.add("src/**/*.groovy");
 
 		// the most basic of patterns * Copyright (c) 2010... -> * Copyright (c) 2010-{THIS_YEAR}...
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4}).*");
+		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4})$");
+		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4}) .*");
 
 		// to and from patterns * Copyright (c) 2010-2011...-> * Copyright (c) 2010-{THIS_YEAR}...
 		//                      * Copyright (c) 2010 - 2011...-> * Copyright (c) 2010 - {THIS_YEAR}...
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) \\d{4}-(\\d{4}).*");
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) \\d{4} - (\\d{4}).*");
+		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4})-(\\d{4}) .*");
+		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4}) - (\\d{4}) .*");
 
 		// comma separated patterns * Copyright (c) 2010, 2011, 2014...-> * Copyright (c) 2010, 2011, 2014-{THIS_YEAR}...
 		//                          * Copyright (c) 2010,2011,2014...-> * Copyright (c) 2010, 2011, 2014-{THIS_YEAR}...
@@ -47,8 +48,8 @@ public class CopyrightrTask extends DefaultTask {
 		//                          * Copyright (c) 2010,2011,2014-2015...-> * Copyright (c) 2010, 2011, 2014-{THIS_YEAR}...
 		//                          * Copyright (c) 2010, 2011, 2014 - 2015...-> * Copyright (c) 2010, 2011, 2014 - {THIS_YEAR}...
 		//                          * Copyright (c) 2010,2011,2014 - 2015...-> * Copyright (c) 2010, 2011, 2014 - {THIS_YEAR}...
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) [\\d{4},\\s*]-(\\d{4}).*");
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) [\\d{4},\\s*] - (\\d{4}).*");
+		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) ([\\d{4},\\s*])-(\\d{4}) .*");
+		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) ([\\d{4},\\s*]) - (\\d{4}) .*");
 	}
 
 	@TaskAction

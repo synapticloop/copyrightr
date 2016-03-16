@@ -59,22 +59,37 @@ public class Parser {
 	}
 
 	private void parseFile(File file) {
+		boolean fileMatch = false;
 		try {
 			List<String> readLines = FileUtils.readLines(file);
+			int i = 0;
 			for (String line : readLines) {
+				
 				for (Pattern pattern : compiledPatterns) {
 					Matcher matcher = pattern.matcher(line);
+
 					if(matcher.matches()) {
+						fileMatch = true;
 						int groupCount = matcher.groupCount();
 						String group = matcher.group(groupCount);
-						int regionStart = matcher.regionStart();
-						int regionEnd = matcher.regionEnd();
-						System.out.println(String.format("%s from %d->%d", group, regionStart, regionEnd));
-						
-						System.out.println("Pattern match " +  matcher.matches());
+						int regionStart = matcher.start(groupCount);
+						int regionEnd = matcher.end(groupCount);
+						String conversionLine = line.substring(0, regionStart) + group + "-2017" + line.substring(regionEnd);
+
+						readLines.set(i, conversionLine);
+
+						project.getLogger().info("Converting line from '" + line + "' to '" + conversionLine + "'.");
 					}
 				}
+				i++;
 			}
+
+			if(fileMatch) {
+				for (String line : readLines) {
+					System.out.println(line);
+				}
+			}
+
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

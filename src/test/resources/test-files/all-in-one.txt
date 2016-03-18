@@ -37,3 +37,4 @@ The following won't match
 
 Copyright (c) 2010,2011 
   company regex escape($\[]{}*.?+\E)
+

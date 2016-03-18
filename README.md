@@ -16,11 +16,24 @@ copyrightr updates the copyright year throughout the files
 
 This will also log a warning if no copyright line is found in one of the included files.
 
+## Warning
+
+This will over-write the files without notice (unless `dryRun = true` is set in the configuration).
+
 ## How it works
 
 Each file within the group of files is searched upon for a copyright notice with a date.  The last year is then either replaced with the current year (where there is a data range - e.g. 2010-2014), or a date range is appended to it.
 
- The input date format and replacements are shown below:
+The parser looks fow lines with the following format
+
+  - The word `Copyright` or `copyright`, followed by
+  - `(c)` *or* `&copy;` *or* `&#169;` *or* `©`, followed by
+  - a recognised date format (see below), followed by
+  - (optionally) a copyright holder's name
+
+### Recognised date formats
+
+The input date format and replacements are shown below:
 
   - `2010, 2011-2012` -> `2010, 2012-${CURRENT_YEAR}`
   - `2010,2011-2012` -> `2010,2012-${CURRENT_YEAR}`
@@ -29,14 +42,8 @@ Each file within the group of files is searched upon for a copyright notice with
 
 where `${CURRENT_YEAR}` is generated through the system clock for the current year.
 
-There are two regular expressions that are used to search through each line of the file:
 
-```
-^.*[cC]opyright \(c\) .*(\d{4})\s*-\s*(\d{4})
-^.*[cC]opyright \(c\) .*(\d{4})");
-```
-
-The first match will form the replacement
+The last match will form the replacement.  If the matched year is equal to the `${CURRENT_YEAR}` then no replacement would be made
 
 ## Configuration
 
@@ -44,16 +51,17 @@ The plugin can be configured with the following information
 
 ```
 copyrightr {
-	// if set to true (default), this will log what would have been changed, 
-	// if set to false, this will over-write the files 
+	// If set to true (default), this will only log what would have been 
+	// changed, if set to false, this will over-write the files __without__
+	// warning
 	dryRun = false
 	
-	// this will be part of the regular expression that is searched for.
+	// This will be part of the regular expression that is searched for.
 	// This helps to narrow down the lines that will be updated, useful
 	// where there may be other companies that have copyright information
 	copyrightHolder = "Synapticloop"
 
-	// which files are to be included, by default the included files are
+	// Which files are to be included, by default the included files are
 	// - src/**/*.java, and
 	// - src/**/*.groovy
 	includes = [ 
@@ -74,10 +82,25 @@ copyrightr {
 }
 ```
 
-## Warning
+## Why set a `copyrightHolder` in the configuration?
 
-This will over-write the files without notice (unless `dryRun = true` is set in the configuration).
+Take an example of the following copyright notice, where multiple contributors are acknowledged:
 
+```
+Copyright (c) 2012-2013 Jane Doe
+Copyright (c) 2001,2005-2013 Peter Smith
+Copyright (c) 2010 John Citizen
+```
+
+With no copyright holder, the updated copyright notice would be replaced with
+
+```
+Copyright (c) 2012-2016 Jane Doe
+Copyright (c) 2001,2005-2016 Peter Smith
+Copyright (c) 2010 - 2016 John Citizen
+```
+
+erasing the original copyright dates for the previouse contributors.
 
 # Building the Package
 

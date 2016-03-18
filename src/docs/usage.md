@@ -1,6 +1,9 @@
-copyrightr updates the copyright year throughout the files
 
-This will also log a warning if no copyright line is found in one of the included files.
+This plugin will either update the copyright years in to included filesets, or will log information to the console as a preview to the changes.
+
+## Warning
+
+This will over-write the files without notice (unless `dryRun = true` is set in the configuration).
 
 ## How it works
 
@@ -64,6 +67,22 @@ copyrightr {
 }
 ```
 
-## Warning
+## Why set a `copyrightHolder` in the configuration?
 
-This will over-write the files without notice (unless `dryRun = true` is set in the configuration).
+Take an example of the following copyright notice, where multiple contributors are acknowledged:
+
+```
+Copyright (c) 2012-2013 Jane Doe
+Copyright (c) 2001,2005-2013 Peter Smith
+Copyright (c) 2010 John Citizen
+```
+
+With no copyright holder, the updated copyright notice would be replaced with
+
+```
+Copyright (c) 2012-2016 Jane Doe
+Copyright (c) 2001,2005-2016 Peter Smith
+Copyright (c) 2010 - 2016 John Citizen
+```
+
+erasing the original copyright dates for the previouse contributors.

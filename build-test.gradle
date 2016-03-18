@@ -33,8 +33,12 @@ repositories {
 }
 
 copyrightr {
-	includes = [ "src/test/resources/test-files/*.txt" ]
+	includes = [ 
+		"src/test/resources/test-files/*.txt",
+		"LICENSE.txt"
+	]
 	dryRun = true
 	onlyReplaceFirst = false
 	copyrightHolder = 'company regex escape($\\[]{}*.?+\\E)'
+	yearSeparator = " - "
 }

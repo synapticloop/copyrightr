@@ -13,17 +13,15 @@
 		{ "type":"inbuilt", "value":"project-name" },
 		{ "type":"inbuilt", "value":"project-description" },
 
-		{ "type":"template", "value":"src/docs/usage.md.templar" },
+		{ "type":"file", "value":"src/docs/usage.md" },
 
 		{ "type":"inbuilt", "value":"gradle-build" },
-
-		{ "type":"inbuilt", "value":"logging-slf4j" },
-
-		{ "type":"inbuilt", "value":"dependencies" },
 
 		{ "type":"inbuilt", "value":"publishing-github" },
 		{ "type":"inbuilt", "value":"publishing-bintray" },
 		{ "type":"inbuilt", "value":"publishing-gradle-plugin" },
+
+		{ "type":"inbuilt", "value":"dependencies" },
 
 		{ "type":"inbuilt", "value":"license-mit" },
 

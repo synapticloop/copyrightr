@@ -138,7 +138,7 @@ public class CopyrightrPluginExtension {
 	 * 
 	 * @param yearSeparator the separator to place between years
 	 */
-	public void setYearSeperator(String yearSeparator) {
+	public void setYearSeparator(String yearSeparator) {
 		this.yearSeparator = yearSeparator;
 	}
 }

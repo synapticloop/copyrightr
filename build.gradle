@@ -34,7 +34,7 @@ apply plugin: 'synapticloop.copyrightr'
 // textual information for this project
 group = 'synapticloop'
 archivesBaseName = 'copyrightr'
-description = """A simple plugin to keep your copyright years up to data"""
+description = """A simple plugin to update the copyright years in a selection of files"""
 
 version = '1.0.0'
 
@@ -139,7 +139,7 @@ bintray {
 pluginBundle {
 	website = 'https://github.com/synapticloop/copyrightr'
 	vcsUrl = 'https://github.com/synapticloop/copyrightr'
-	description = 'A simple plugin to keep your copyright years up to data'
+	description = description
 	tags = [ 'copyright' ]
 
 	plugins {

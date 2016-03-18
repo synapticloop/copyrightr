@@ -13,7 +13,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'synapticloop:copyrightr:0.0.1'
+		classpath 'synapticloop:copyrightr:1.0.0'
 	}
 }
 
@@ -36,7 +36,7 @@ group = 'synapticloop'
 archivesBaseName = 'copyrightr'
 description = """A simple plugin to keep your copyright years up to data"""
 
-version = '0.0.1'
+version = '1.0.0'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -51,11 +51,10 @@ repositories {
 
 // now for all of the dependencies
 dependencies {
-	runtime 'synapticloop:simplelogger:1.1.0'
 	runtime 'commons-io:commons-io:2.4'
 
 	compile gradleApi()
-	compile 'synapticloop:simplelogger:1.1.0'
+	compile 'commons-io:commons-io:2.4'
 }
 
 // we always want to fail on version conflict

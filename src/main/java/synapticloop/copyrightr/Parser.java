@@ -45,8 +45,8 @@ public class Parser {
 
 	private static final List<String> PATTERNS = new ArrayList<String>();
 	static {
-		PATTERNS.add(".*[cC]opyright \\(c\\) .*(\\d{4})\\s*-\\s*(\\d{4})");
-		PATTERNS.add(".*[cC]opyright \\(c\\) .*(\\d{4})");
+		PATTERNS.add("^.*[cC]opyright \\(c\\) .*(\\d{4})\\s*-\\s*(\\d{4})");
+		PATTERNS.add("^.*[cC]opyright \\(c\\) .*(\\d{4})");
 	}
 
 	private Logger logger;
@@ -72,7 +72,7 @@ public class Parser {
 
 		// compile the patterns to ensure that they work
 		for (String pattern : PATTERNS) {
-			String patternFormat = String.format("%s%s%s%s", pattern, ".*", Pattern.quote(copyrightHolder), ".*");
+			String patternFormat = String.format("%s%s%s%s", pattern, ".*", Pattern.quote(copyrightHolder), ".*$");
 			compiledPatterns.add(Pattern.compile(patternFormat));
 			logger.debug("Compiled pattern:"  + Pattern.compile(patternFormat).pattern());
 		}

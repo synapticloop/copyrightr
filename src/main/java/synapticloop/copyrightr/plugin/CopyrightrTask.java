@@ -33,6 +33,11 @@ public class CopyrightrTask extends DefaultTask {
 		DEFAULT_INCLUDES_LIST.add("src/**/*.java");
 		DEFAULT_INCLUDES_LIST.add("src/**/*.groovy");
 
+//		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) ((\\d{4})(.+?)).*");
+		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) .*(\\d{4})\\s*-\\s*(\\d{4}).*");
+//		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) .*(\\d{4}) - (\\d{4}).*");
+		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) .*(\\d{4}).*");
+
 		// the most basic of patterns * Copyright (c) 2010... -> * Copyright (c) 2010-{THIS_YEAR}...
 		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4})$");
 		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4}) .*");

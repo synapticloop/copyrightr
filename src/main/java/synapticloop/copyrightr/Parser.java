@@ -85,8 +85,16 @@ public class Parser {
 
 					if(matcher.matches()) {
 						logger.info(String.format("Found a match with pattern '%s' for line '%s'", pattern.pattern(), line));
+
 						fileMatch = true;
 						int groupCount = matcher.groupCount();
+						for(int j = 0; j <= groupCount; j++) {
+							String group = matcher.group(j);
+							int regionStart = matcher.start(j);
+							int regionEnd = matcher.end(j);
+							System.out.println(j + ":" + group);
+							
+						}
 						String group = matcher.group(groupCount);
 						int regionStart = matcher.start(groupCount);
 						int regionEnd = matcher.end(groupCount);

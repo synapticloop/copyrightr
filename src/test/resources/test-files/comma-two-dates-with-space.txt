@@ -1,5 +1,0 @@
-the following should match
-
- * Copyright (c) 2010,2011 - 2012 company regex escape($\[]{}*.?+\E)
-
- 

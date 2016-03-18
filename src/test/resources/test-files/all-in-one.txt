@@ -9,4 +9,27 @@ At this point we are going to replace all of the following with something else
  * Copyright (c) 2010-2011 company regex escape($\[]{}*.?+\E)
  * Copyright (c) 2010 company regex escape($\[]{}*.?+\E)
 
- 
+ * copyright (c) 2010,2011 company regex escape($\[]{}*.?+\E)
+ * copyright (c) 2010 company regex escape($\[]{}*.?+\E)
+ * copyright (c) 2010, 2011-2012 company regex escape($\[]{}*.?+\E)
+ * copyright (c) 2010, 2011 - 2012 company regex escape($\[]{}*.?+\E)
+ * copyright (c) 2010,2011-2012 company regex escape($\[]{}*.?+\E)
+ * copyright (c) 2010,2011 - 2012 company regex escape($\[]{}*.?+\E)
+ * copyright (c) 2010 company regex escape($\[]{}*.?+\E)
+ * copyright (c) 2010-2011 company regex escape($\[]{}*.?+\E)
+ * copyright (c) 2010 company regex escape($\[]{}*.?+\E)
+
+Copyright (c) 2010,2011 company regex escape($\[]{}*.?+\E)
+Copyright (c) 2010 company regex escape($\[]{}*.?+\E)
+Copyright (c) 2010, 2011-2012 company regex escape($\[]{}*.?+\E)
+Copyright (c) 2010, 2011 - 2012 company regex escape($\[]{}*.?+\E)
+Copyright (c) 2010,2011-2012 company regex escape($\[]{}*.?+\E)
+Copyright (c) 2010,2011 - 2012 company regex escape($\[]{}*.?+\E)
+Copyright (c) 2010 company regex escape($\[]{}*.?+\E)
+Copyright (c) 2010-2011 company regex escape($\[]{}*.?+\E)
+Copyright (c) 2010 company regex escape($\[]{}*.?+\E)
+
+The following won't match
+
+Copyright (c) 2010,2011 
+  company regex escape($\[]{}*.?+\E)

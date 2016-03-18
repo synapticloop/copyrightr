@@ -45,8 +45,8 @@ public class Parser {
 
 	private static final List<String> PATTERNS = new ArrayList<String>();
 	static {
-		PATTERNS.add(".*Copyright \\(c\\) .*(\\d{4})\\s*-\\s*(\\d{4})");
-		PATTERNS.add(".*Copyright \\(c\\) .*(\\d{4})");
+		PATTERNS.add(".*[cC]opyright \\(c\\) .*(\\d{4})\\s*-\\s*(\\d{4})");
+		PATTERNS.add(".*[cC]opyright \\(c\\) .*(\\d{4})");
 	}
 
 	private Logger logger;

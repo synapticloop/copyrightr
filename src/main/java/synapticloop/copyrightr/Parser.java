@@ -150,7 +150,9 @@ public class Parser {
 			}
 
 			if(dryRun) {
-				logger.warn(String.format("Dry run enabled - __NOT__ replacing '%s' with '%s'", line, conversionLine));
+				logger.warn("DRY RUN enabled, no replacements made");
+				logger.warn(String.format("    before: %s", line));
+				logger.warn(String.format("     after: %s", conversionLine));
 				return(line);
 			} else {
 				logger.info(String.format("Converting line from '%s' to '%s'", line, conversionLine));

@@ -12,9 +12,8 @@
 > A simple plugin to update the copyright years in a selection of files
 
 
-copyrightr updates the copyright year throughout the files
 
-This will also log a warning if no copyright line is found in one of the included files.
+This plugin will either update the copyright years in to included filesets, or will log information to the console as a preview to the changes.
 
 ## Warning
 

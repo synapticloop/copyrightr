@@ -47,6 +47,12 @@ public class Parser {
 	static {
 		PATTERNS.add("^.*[cC]opyright \\(c\\) .*(\\d{4})\\s*-\\s*(\\d{4})");
 		PATTERNS.add("^.*[cC]opyright \\(c\\) .*(\\d{4})");
+		PATTERNS.add("^.*[cC]opyright \u00A9 .*(\\d{4})\\s*-\\s*(\\d{4})");
+		PATTERNS.add("^.*[cC]opyright \u00A9 .*(\\d{4})");
+		PATTERNS.add("^.*[cC]opyright &copy; .*(\\d{4})\\s*-\\s*(\\d{4})");
+		PATTERNS.add("^.*[cC]opyright &copy; .*(\\d{4})");
+		PATTERNS.add("^.*[cC]opyright &#169; .*(\\d{4})\\s*-\\s*(\\d{4})");
+		PATTERNS.add("^.*[cC]opyright &#169; .*(\\d{4})");
 	}
 
 	private Logger logger;

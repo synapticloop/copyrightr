@@ -25,7 +25,7 @@ The input date format and replacements are shown below:
 where `${CURRENT_YEAR}` is generated through the system clock for the current year.
 
 
-The first match will form the replacement
+The last match will form the replacement.  If the matched year is equal to the `${CURRENT_YEAR}` then no replacement would be made
 
 ## Configuration
 
@@ -33,16 +33,17 @@ The plugin can be configured with the following information
 
 ```
 copyrightr {
-	// if set to true (default), this will log what would have been changed, 
-	// if set to false, this will over-write the files 
+	// If set to true (default), this will only log what would have been 
+	// changed, if set to false, this will over-write the files __without__
+	// warning
 	dryRun = false
 	
-	// this will be part of the regular expression that is searched for.
+	// This will be part of the regular expression that is searched for.
 	// This helps to narrow down the lines that will be updated, useful
 	// where there may be other companies that have copyright information
 	copyrightHolder = "Synapticloop"
 
-	// which files are to be included, by default the included files are
+	// Which files are to be included, by default the included files are
 	// - src/**/*.java, and
 	// - src/**/*.groovy
 	includes = [ 

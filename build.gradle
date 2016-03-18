@@ -65,6 +65,11 @@ configurations.all {
 	}
 }
 
+copyrightr {
+	dryRun = false
+	copyrightHolder = "Synapticloop"
+}
+
 github {
 	owner = group
 	repo = archivesBaseName

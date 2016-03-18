@@ -139,7 +139,7 @@ bintray {
 pluginBundle {
 	website = 'https://github.com/synapticloop/copyrightr'
 	vcsUrl = 'https://github.com/synapticloop/copyrightr'
-	description = description
+	description = """A simple plugin to update the copyright years in a selection of files"""
 	tags = [ 'copyright' ]
 
 	plugins {

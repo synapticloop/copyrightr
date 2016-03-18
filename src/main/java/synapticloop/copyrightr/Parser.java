@@ -33,6 +33,7 @@ import org.gradle.api.file.ConfigurableFileTree;
 import org.gradle.api.file.FileTree;
 import org.gradle.api.logging.Logger;
 
+import synapticloop.copyrightr.exception.CopyrightrException;
 import synapticloop.copyrightr.plugin.CopyrightrPluginExtension;
 
 public class Parser {
@@ -99,11 +100,15 @@ public class Parser {
 	public void parse() {
 		Set<File> files = asFileTree.getFiles();
 		for (File file : files) {
-			parseFile(file);
+			try {
+				parseFile(file);
+			} catch (CopyrightrException ex) {
+				logger.error(ex.getMessage());
+			}
 		}
 	}
 
-	private void parseFile(File file) {
+	private void parseFile(File file) throws CopyrightrException {
 		boolean fileMatch = false;
 		logger.info(String.format("Searching for copyright notice in file '%s'", file.getPath()));
 		try {
@@ -156,7 +161,7 @@ public class Parser {
 			}
 
 		} catch (IOException ex) {
-			ex.printStackTrace();
+			throw new CopyrightrException(String.format("Could not update copyright for file '%s', message was '%s'", file.getPath(), ex.getMessage()), ex);
 		}
 	}
 

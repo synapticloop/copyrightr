@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/synapticloop/copyrightr.svg?branch=master)](https://travis-ci.org/synapticloop/copyrightr) [![Download](https://api.bintray.com/packages/synapticloop/maven/copyrightr/images/download.svg)](https://bintray.com/synapticloop/maven/copyrightr/_latestVersion) [![GitHub Release](https://img.shields.io/github/release/synapticloop/copyrightr.svg)](https://github.com/synapticloop/copyrightr/releases) [![Gradle Plugin Release](https://img.shields.io/badge/gradle%20plugin-0.0.1-blue.svg)](https://plugins.gradle.org/plugin/synapticloop.copyrightr) 
+[![Build Status](https://travis-ci.org/synapticloop/copyrightr.svg?branch=master)](https://travis-ci.org/synapticloop/copyrightr) [![Download](https://api.bintray.com/packages/synapticloop/maven/copyrightr/images/download.svg)](https://bintray.com/synapticloop/maven/copyrightr/_latestVersion) [![GitHub Release](https://img.shields.io/github/release/synapticloop/copyrightr.svg)](https://github.com/synapticloop/copyrightr/releases) [![Gradle Plugin Release](https://img.shields.io/badge/gradle%20plugin-1.0.0-blue.svg)](https://plugins.gradle.org/plugin/synapticloop.copyrightr) 
 
 > **This project requires JVM version of at least 1.7**
 
@@ -101,6 +101,54 @@ A sample `log4j2.xml` is below:
 </Configuration>
 ```
 
+## Dependencies - Gradle
+
+```
+dependencies {
+	runtime(group: 'synapticloop', name: 'copyrightr', version: '1.0.0', ext: 'jar')
+
+	compile(group: 'synapticloop', name: 'copyrightr', version: '1.0.0', ext: 'jar')
+}
+```
+
+or, more simply for versions of gradle greater than 2.1
+
+```
+dependencies {
+	runtime 'synapticloop:copyrightr:1.0.0'
+
+	compile 'synapticloop:copyrightr:1.0.0'
+}
+```
+
+## Dependencies - Maven
+
+```
+<dependency>
+	<groupId>synapticloop</groupId>
+	<artifactId>copyrightr</artifactId>
+	<version>1.0.0</version>
+	<type>jar</type>
+</dependency>
+```
+
+## Dependencies - Downloads
+
+
+You will also need to download the following dependencies:
+
+
+
+### compile dependencies
+
+  - commons-io:commons-io:2.4: (It may be available on one of: [bintray](https://bintray.com/commons-io/maven/commons-io/2.4/view#files/commons-io/commons-io/2.4) [mvn central](http://search.maven.org/#artifactdetails|commons-io|commons-io|2.4|jar))
+
+
+### runtime dependencies
+
+  - commons-io:commons-io:2.4: (It may be available on one of: [bintray](https://bintray.com/commons-io/maven/commons-io/2.4/view#files/commons-io/commons-io/2.4) [mvn central](http://search.maven.org/#artifactdetails|commons-io|commons-io|2.4|jar))
+
+**NOTE:** You may need to download any dependencies of the above dependencies in turn (i.e. the transitive dependencies)
 # Artefact Publishing - Github
 
 This project publishes artefacts to [GitHib](https://github.com/)
@@ -173,73 +221,11 @@ repositories {
 }
 ```
 
-## Dependencies - Gradle
-
-```
-dependencies {
-	runtime(group: 'synapticloop', name: 'copyrightr', version: '0.0.1', ext: 'jar')
-
-	compile(group: 'synapticloop', name: 'copyrightr', version: '0.0.1', ext: 'jar')
-}
-```
-
-or, more simply for versions of gradle greater than 2.1
-
-```
-dependencies {
-	runtime 'synapticloop:copyrightr:0.0.1'
-
-	compile 'synapticloop:copyrightr:0.0.1'
-}
-```
-
-## Dependencies - Maven
-
-```
-<dependency>
-	<groupId>synapticloop</groupId>
-	<artifactId>copyrightr</artifactId>
-	<version>0.0.1</version>
-	<type>jar</type>
-</dependency>
-```
-
-## Dependencies - Downloads
-
-
-You will also need to download the following dependencies:
-
-
-
-### compile dependencies
-
-  - synapticloop:simplelogger:1.1.0: (It may be available on one of: [bintray](https://bintray.com/synapticloop/maven/simplelogger/1.1.0/view#files/synapticloop/simplelogger/1.1.0) [mvn central](http://search.maven.org/#artifactdetails|synapticloop|simplelogger|1.1.0|jar))
-
-
-### runtime dependencies
-
-  - synapticloop:simplelogger:1.1.0: (It may be available on one of: [bintray](https://bintray.com/synapticloop/maven/simplelogger/1.1.0/view#files/synapticloop/simplelogger/1.1.0) [mvn central](http://search.maven.org/#artifactdetails|synapticloop|simplelogger|1.1.0|jar))
-  - commons-io:commons-io:2.4: (It may be available on one of: [bintray](https://bintray.com/commons-io/maven/commons-io/2.4/view#files/commons-io/commons-io/2.4) [mvn central](http://search.maven.org/#artifactdetails|commons-io|commons-io|2.4|jar))
-
-**NOTE:** You may need to download any dependencies of the above dependencies in turn (i.e. the transitive dependencies)
 # Artefact Publishing - gradle plugin portal
 
 This project publishes artefacts to [the gradle plugin portal](https://plugins.gradle.org/)
 
 > Note that the latest version can be found [https://plugins.gradle.org/plugin/synapticloop.copyrightr](https://plugins.gradle.org/plugin/synapticloop.copyrightr)
-
-
-# All-In-One
-
-This project's artefact output is an 'all in one' jar which includes all runtime dependencies.
-
-This should appear in the artefact repository along with the compiled code, as a convention, this is usually appended with an `-all` classifier
-
-For example:
-
-`copyrightr-0.0.1.jar -> copyrightr-0.0.1-all.jar`
-
-
 
 
 # License

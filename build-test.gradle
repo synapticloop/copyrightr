@@ -25,17 +25,6 @@ plugins {
 
 apply plugin: 'synapticloop.copyrightr'
 
-// textual information for this project
-group = 'synapticloop'
-archivesBaseName = 'copyrightr'
-description = """A simple plugin to keep your copyright years up to data"""
-
-version = '1.0.0'
-
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
-
-
 // all of the repositories that this project will use
 repositories {
 	mavenLocal()

@@ -54,6 +54,7 @@ public class Parser {
 	private List<String> includes;
 	private List<String> excludes;
 	private String copyrightHolder;
+	private String yearSeparator;
 	private boolean dryRun;
 	private boolean onlyReplaceFirst;
 
@@ -69,6 +70,7 @@ public class Parser {
 		this.excludes = extension.getExcludes();
 		this.dryRun = extension.getDryRun();
 		this.onlyReplaceFirst = extension.getOnlyReplaceFirst();
+		this.yearSeparator = extension.getYearSeparator();
 
 		// compile the patterns to ensure that they work
 		for (String pattern : PATTERNS) {
@@ -162,7 +164,7 @@ public class Parser {
 				// we are going to take the last date and replace it with THIS_YEAR
 				conversionLine = String.format("%s%s%s", line.substring(0, regionStart), THIS_YEAR, line.substring(regionEnd));
 			} else {
-				conversionLine = String.format("%s%s-%s%s", line.substring(0, regionStart), group, THIS_YEAR, line.substring(regionEnd));
+				conversionLine = String.format("%s%s%s%s%s", line.substring(0, regionStart), group, yearSeparator, THIS_YEAR, line.substring(regionEnd));
 			}
 
 			if(dryRun) {

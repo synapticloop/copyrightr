@@ -22,9 +22,10 @@ import java.util.List;
 public class CopyrightrPluginExtension {
 	private List<String> includes = new ArrayList<String>();
 	private List<String> excludes = new ArrayList<String>();
-	private boolean dryRun = false;
+	private boolean dryRun = true;
 	private boolean onlyReplaceFirst = true;
 	private String copyrightHolder = "";
+	private String yearSeparator = "-";
 
 	/**
 	 * Return the list of exclusion patterns
@@ -121,5 +122,23 @@ public class CopyrightrPluginExtension {
 	 */
 	public void setCopyrightHolder(String copyrightHolder) {
 		this.copyrightHolder = copyrightHolder;
+	}
+
+	/**
+	 * Get the separator for year ranges (default ' - '), e.g. 2010 -2012
+	 * 
+	 * @return the separator for year ranges
+	 */
+	public String getYearSeparator() {
+		return yearSeparator;
+	}
+
+	/**
+	 * Set the separator for year ranges (default ' - '), e.g. 2010 -2012
+	 * 
+	 * @param yearSeparator the separator to place between years
+	 */
+	public void setYearSeperator(String yearSeparator) {
+		this.yearSeparator = yearSeparator;
 	}
 }

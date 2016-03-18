@@ -1,7 +1,7 @@
 package synapticloop.copyrightr.plugin;
 
 /*
- * Copyright (c) 2016 synapticloop.
+ * Copyright (c) 2016 Synapticloop.
  * 
  * All rights reserved.
  * 
@@ -20,7 +20,6 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
 public class CopyrightrPlugin implements Plugin<Project> {
-
 
 	@Override
 	public void apply(Project project) {

@@ -46,6 +46,8 @@ repositories {
 copyrightr {
 	includes = [ "src/test/resources/test-files/*.txt" ]
 	dryRun = true
+	onlyReplaceFirst = false
+	copyrightHolder = 'company regex escape($\\[]{}*.?+\\E)'
 }
 
 // now for all of the dependencies

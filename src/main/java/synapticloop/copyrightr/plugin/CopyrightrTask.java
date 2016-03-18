@@ -1,10 +1,7 @@
 package synapticloop.copyrightr.plugin;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
- * Copyright (c) 2016 synapticloop.
+ * Copyright (c) 2016 Synapticloop.
  * 
  * All rights reserved.
  * 
@@ -19,6 +16,9 @@ import java.util.List;
  * this source code or binaries.
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
 
@@ -27,35 +27,10 @@ import synapticloop.copyrightr.exception.CopyrightrException;
 
 public class CopyrightrTask extends DefaultTask {
 	private static final List<String> DEFAULT_INCLUDES_LIST = new ArrayList<String>();
-	private static final List<String> DEFAULT_PATTERNS = new ArrayList<String>();
 
 	static {
 		DEFAULT_INCLUDES_LIST.add("src/**/*.java");
 		DEFAULT_INCLUDES_LIST.add("src/**/*.groovy");
-
-//		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) ((\\d{4})(.+?)).*");
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) .*(\\d{4})\\s*-\\s*(\\d{4}).*");
-//		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) .*(\\d{4}) - (\\d{4}).*");
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) .*(\\d{4}).*");
-
-		// the most basic of patterns * Copyright (c) 2010... -> * Copyright (c) 2010-{THIS_YEAR}...
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4})$");
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4}) .*");
-
-		// to and from patterns * Copyright (c) 2010-2011...-> * Copyright (c) 2010-{THIS_YEAR}...
-		//                      * Copyright (c) 2010 - 2011...-> * Copyright (c) 2010 - {THIS_YEAR}...
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4})-(\\d{4}) .*");
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) (\\d{4}) - (\\d{4}) .*");
-
-		// comma separated patterns * Copyright (c) 2010, 2011, 2014...-> * Copyright (c) 2010, 2011, 2014-{THIS_YEAR}...
-		//                          * Copyright (c) 2010,2011,2014...-> * Copyright (c) 2010, 2011, 2014-{THIS_YEAR}...
-		//                          * Copyright (c) 2010, 2011, 2014-2015...-> * Copyright (c) 2010, 2011, 2014-{THIS_YEAR}...
-		//                          * Copyright (c) 2010,2011,2014-2015...-> * Copyright (c) 2010, 2011, 2014-{THIS_YEAR}...
-		//                          * Copyright (c) 2010, 2011, 2014 - 2015...-> * Copyright (c) 2010, 2011, 2014 - {THIS_YEAR}...
-		//                          * Copyright (c) 2010,2011,2014 - 2015...-> * Copyright (c) 2010, 2011, 2014 - {THIS_YEAR}...
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) [(\\d{4},\\s*)].*");
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) ([\\d{4},\\s*])-(\\d{4}) .*");
-		DEFAULT_PATTERNS.add("\\s*\\* Copyright \\(c\\) ([\\d{4},\\s*]) - (\\d{4}) .*");
 	}
 
 	@TaskAction
@@ -68,10 +43,6 @@ public class CopyrightrTask extends DefaultTask {
 
 		if(extension.getIncludes().isEmpty()) {
 			extension.setIncludes(DEFAULT_INCLUDES_LIST);
-		}
-
-		if(extension.getPatterns().isEmpty()) {
-			extension.setPatterns(DEFAULT_PATTERNS);
 		}
 
 		Parser parser = new Parser(getProject(), extension);

@@ -33,6 +33,14 @@ public class CopyrightrTask extends DefaultTask {
 		DEFAULT_INCLUDES_LIST.add("src/**/*.groovy");
 	}
 
+	/**
+	 * Instantiate the task, setting the group and description
+	 */
+	public CopyrightrTask() {
+		super.setGroup("Documentation");
+		super.setDescription("Searches and (potentially) updates copyright years in files.");
+	}
+
 	@TaskAction
 	public void generate() throws CopyrightrException {
 		CopyrightrPluginExtension extension = getProject().getExtensions().findByType(CopyrightrPluginExtension.class);

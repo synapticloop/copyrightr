@@ -24,6 +24,7 @@ public class CopyrightrPluginExtension {
 	private List<String> excludes = new ArrayList<String>();
 	private boolean dryRun = true;
 	private boolean onlyReplaceFirst = true;
+	private boolean failOnMissing = false;
 	private String copyrightHolder = "";
 	private String yearSeparator = "-";
 
@@ -140,5 +141,24 @@ public class CopyrightrPluginExtension {
 	 */
 	public void setYearSeparator(String yearSeparator) {
 		this.yearSeparator = yearSeparator;
+	}
+
+	/**
+	 * Set whether to fail the build on missing copyright notification
+	 * 
+	 * @param failOnMissing whether to fail the build on missing copyright 
+	 *     information
+	 */
+	public void setFailOnMissing(boolean failOnMissing) {
+		this.failOnMissing = failOnMissing;
+	}
+
+	/**
+	 * Get whether to fail on missing copyright information
+	 * 
+	 * @return whether to fail on missing copyright information
+	 */
+	public boolean getFailOnMissing() {
+		return this.failOnMissing;
 	}
 }

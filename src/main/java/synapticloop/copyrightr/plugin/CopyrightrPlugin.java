@@ -21,10 +21,12 @@ import org.gradle.api.Project;
 
 public class CopyrightrPlugin implements Plugin<Project> {
 
+	private static final String COPYRIGHTR = "copyrightr";
+
 	@Override
 	public void apply(Project project) {
-		project.getExtensions().create("copyrightr", CopyrightrPluginExtension.class);
-		project.getTasks().create("copyrightr", CopyrightrTask.class);
+		project.getExtensions().create(COPYRIGHTR, CopyrightrPluginExtension.class);
+		project.getTasks().create(COPYRIGHTR, CopyrightrTask.class);
 	}
 
 }

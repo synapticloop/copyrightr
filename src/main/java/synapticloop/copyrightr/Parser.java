@@ -28,11 +28,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
+import org.gradle.api.GradleScriptException;
 import org.gradle.api.Project;
 import org.gradle.api.file.ConfigurableFileTree;
 import org.gradle.api.file.FileTree;
 import org.gradle.api.logging.Logger;
 
+import synapticloop.copyrightr.bean.Statistics;
 import synapticloop.copyrightr.exception.CopyrightrException;
 import synapticloop.copyrightr.plugin.CopyrightrPluginExtension;
 
@@ -58,17 +60,27 @@ public class Parser {
 
 	private Logger logger;
 
+	private Statistics statistics = new Statistics();
+
 	private List<String> includes;
 	private List<String> excludes;
 	private String copyrightHolder;
 	private String yearSeparator;
 	private boolean dryRun;
 	private boolean onlyReplaceFirst;
+	private boolean failOnMissing;
 
 	private FileTree asFileTree;
 
 	private List<Pattern> compiledPatterns = new ArrayList<Pattern>();
 
+	/**
+	 * Create a new parser object which will loop through the lines of the file
+	 * looking for copyright notices and (potentially) update them
+	 * 
+	 * @param project The Gradle project
+	 * @param extension The plugin extension with the options
+	 */
 	public Parser(Project project, CopyrightrPluginExtension extension) {
 		this.logger = project.getLogger();
 		this.copyrightHolder = extension.getCopyrightHolder();
@@ -78,6 +90,7 @@ public class Parser {
 		this.dryRun = extension.getDryRun();
 		this.onlyReplaceFirst = extension.getOnlyReplaceFirst();
 		this.yearSeparator = extension.getYearSeparator();
+		this.failOnMissing = extension.getFailOnMissing();
 
 		// compile the patterns to ensure that they work
 		for (String pattern : PATTERNS) {
@@ -97,6 +110,11 @@ public class Parser {
 		asFileTree = fileTree.getAsFileTree();
 	}
 
+	/**
+	 * Parse the files, looking for the copyright notice, then print out a 
+	 * summary, if the failOnMissing flag is set and there are missing 
+	 * copyright notices, the build will fail.
+	 */
 	public void parse() {
 		Set<File> files = asFileTree.getFiles();
 		for (File file : files) {
@@ -106,9 +124,25 @@ public class Parser {
 				logger.error(ex.getMessage());
 			}
 		}
+
+		// print out the statistics
+		logger.lifecycle("  Copyrightr found the following:");
+		logger.lifecycle("  ===============================");
+		logger.lifecycle("    Searched files: " + statistics.getNumFiles());
+		logger.lifecycle("         found (c): " + statistics.getNumFound());
+		logger.lifecycle("       missing (c): " + statistics.getNumMissing());
+		logger.lifecycle("       updated (c): " + statistics.getNumUpdated());
+		logger.lifecycle("   not updated (c): " + statistics.getNumNotUpdated());
+
+		if(failOnMissing && statistics.getNumMissing() > 0) {
+			throw new GradleScriptException(String.format("Missing copyright notices on %d files, failing...", statistics.getNumMissing()), new Exception("Missing copyright notices in file(s)"));
+		}
+
 	}
 
 	private void parseFile(File file) throws CopyrightrException {
+		statistics.incrementNumFiles();
+
 		boolean fileMatch = false;
 		logger.info(String.format("Searching for copyright notice in file '%s'", file.getPath()));
 		try {
@@ -146,6 +180,7 @@ public class Parser {
 						}
 
 						readLines.set(i, getReplacementLine(line, group, regionStart, regionEnd, overwrite));
+						statistics.incrementNumFound();
 						break;
 					}
 				}
@@ -157,6 +192,7 @@ public class Parser {
 					FileUtils.writeLines(file, readLines, false);
 				}
 			} else {
+				statistics.incrementNumMissing();
 				logger.warn(String.format("Could not find copyright in file '%s'.", file.getName()));
 			}
 
@@ -167,9 +203,11 @@ public class Parser {
 
 	private String getReplacementLine(String line, String group, int regionStart, int regionEnd, boolean overwrite) {
 		if(THIS_YEAR.equals(group)) {
+			statistics.incrementNumNotUpdated();
 			logger.info(String.format("Not replacing line - the year is current: %s", line));
 			return(line);
 		} else {
+			statistics.incrementNumUpdated();
 			String conversionLine = line;
 			if(overwrite) {
 				// we are going to take the last date and replace it with THIS_YEAR

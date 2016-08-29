@@ -1,11 +1,48 @@
-[![Build Status](https://travis-ci.org/synapticloop/copyrightr.svg?branch=master)](https://travis-ci.org/synapticloop/copyrightr) [![Download](https://api.bintray.com/packages/synapticloop/maven/copyrightr/images/download.svg)](https://bintray.com/synapticloop/maven/copyrightr/_latestVersion) [![GitHub Release](https://img.shields.io/github/release/synapticloop/copyrightr.svg)](https://github.com/synapticloop/copyrightr/releases) [![Gradle Plugin Release](https://img.shields.io/badge/gradle%20plugin-1.0.1-blue.svg)](https://plugins.gradle.org/plugin/synapticloop.copyrightr) 
+ <a name="#documentr_top"></a>[![Build Status](https://travis-ci.org/synapticloop/copyrightr.svg?branch=master)](https://travis-ci.org/synapticloop/copyrightr) [![Download](https://api.bintray.com/packages/synapticloop/maven/copyrightr/images/download.svg)](https://bintray.com/synapticloop/maven/copyrightr/_latestVersion) [![GitHub Release](https://img.shields.io/github/release/synapticloop/copyrightr.svg)](https://github.com/synapticloop/copyrightr/releases) [![Gradle Plugin Release](https://img.shields.io/badge/gradle%20plugin-1.1.0-blue.svg)](https://plugins.gradle.org/plugin/synapticloop.copyrightr) 
 
 > **This project requires JVM version of at least 1.7**
 
 
 
 
-# copyrightr
+
+
+<a name="documentr_heading_0"></a>
+
+# Table of Contents <sup><sup>[top](#documentr_top)</sup></sup>
+
+
+
+ - [Table of Contents](#documentr_heading_0)
+ - [copyrightr](#documentr_heading_1)
+   - [Warning](#documentr_heading_2)
+   - [How it works](#documentr_heading_3)
+ - [Gradle plugin usage](#documentr_heading_5)
+   - [Build script snippet for use in all Gradle versions:](#documentr_heading_6)
+   - [Build script snippet for new, incubating, plugin mechanism introduced in Gradle 2.1:](#documentr_heading_7)
+   - [Configuration](#documentr_heading_8)
+   - [Why set a copyrightHolder in the configuration?](#documentr_heading_9)
+ - [Building the Package](#documentr_heading_10)
+   - [*NIX/Mac OS X](#documentr_heading_11)
+   - [Windows](#documentr_heading_12)
+ - [Artefact Publishing - Github](#documentr_heading_13)
+ - [Artefact Publishing - Bintray](#documentr_heading_14)
+   - [maven setup](#documentr_heading_15)
+   - [gradle setup](#documentr_heading_16)
+ - [Artefact Publishing - gradle plugin portal](#documentr_heading_17)
+   - [Dependencies - Gradle](#documentr_heading_18)
+   - [Dependencies - Maven](#documentr_heading_19)
+   - [Dependencies - Downloads](#documentr_heading_20)
+ - [License](#documentr_heading_23)
+
+
+
+
+
+
+<a name="documentr_heading_1"></a>
+
+# copyrightr <sup><sup>[top](#documentr_top)</sup></sup>
 
 
 
@@ -15,11 +52,19 @@
 
 This plugin will either update the copyright years in to included filesets, or will log information to the console as a preview to the changes.
 
-## Warning
+
+
+<a name="documentr_heading_2"></a>
+
+## Warning <sup><sup>[top](#documentr_top)</sup></sup>
 
 This will over-write the files without notice (unless `dryRun = true` is set in the configuration).
 
-## How it works
+
+
+<a name="documentr_heading_3"></a>
+
+## How it works <sup><sup>[top](#documentr_top)</sup></sup>
 
 Each file within the group of files is searched upon for a copyright notice with a date.  The last year is then either replaced with the current year (where there is a data range - e.g. 2010-2014), or a date range is appended to it.
 
@@ -44,9 +89,66 @@ where `${CURRENT_YEAR}` is generated through the system clock for the current ye
 
 The last match will form the replacement.  If the matched year is equal to the `${CURRENT_YEAR}` then no replacement would be made
 
-## Configuration
+
+
+
+<a name="documentr_heading_5"></a>
+
+# Gradle plugin usage <sup><sup>[top](#documentr_top)</sup></sup>
+
+
+
+<a name="documentr_heading_6"></a>
+
+## Build script snippet for use in all Gradle versions: <sup><sup>[top](#documentr_top)</sup></sup>
+
+
+
+```
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.synapticloop:copyrightr:1.1.0"
+  }
+}
+
+apply plugin: "synapticloop.copyrightr"
+```
+
+
+
+
+
+
+<a name="documentr_heading_7"></a>
+
+## Build script snippet for new, incubating, plugin mechanism introduced in Gradle 2.1: <sup><sup>[top](#documentr_top)</sup></sup>
+
+
+
+```
+plugins {
+  id "synapticloop.copyrightr" version "1.1.0"
+}
+```
+
+
+
+
+
+
+
+<a name="documentr_heading_8"></a>
+
+## Configuration <sup><sup>[top](#documentr_top)</sup></sup>
 
 The plugin can be configured with the following information
+
+
 
 ```
 copyrightr {
@@ -78,12 +180,25 @@ copyrightr {
 	// the year separator to use
 	yearSeparator = " - "
 
+	// Whether to fail the build on any missing copyright notifications, by
+	// default, this is set to false
+	failOnMissing = false
+
 }
+
 ```
 
-## Why set a `copyrightHolder` in the configuration?
+
+
+
+
+<a name="documentr_heading_9"></a>
+
+## Why set a `copyrightHolder` in the configuration? <sup><sup>[top](#documentr_top)</sup></sup>
 
 Take an example of the following copyright notice, where multiple contributors are acknowledged:
+
+
 
 ```
 Copyright (c) 2012-2013 Jane Doe
@@ -91,7 +206,11 @@ Copyright (c) 2001,2005-2013 Peter Smith
 Copyright (c) 2010 John Citizen
 ```
 
+
+
 With no copyright holder, the updated copyright notice would be replaced with
+
+
 
 ```
 Copyright (c) 2012-2016 Jane Doe
@@ -99,18 +218,34 @@ Copyright (c) 2001,2005-2016 Peter Smith
 Copyright (c) 2010 - 2016 John Citizen
 ```
 
-erasing the original copyright dates for the previouse contributors.
 
-# Building the Package
 
-## *NIX/Mac OS X
+erasing the original copyright dates for the previous contributors.
+
+
+
+
+
+<a name="documentr_heading_10"></a>
+
+# Building the Package <sup><sup>[top](#documentr_top)</sup></sup>
+
+
+
+<a name="documentr_heading_11"></a>
+
+## *NIX/Mac OS X <sup><sup>[top](#documentr_top)</sup></sup>
 
 From the root of the project, simply run
 
 `./gradlew build`
 
 
-## Windows
+
+
+<a name="documentr_heading_12"></a>
+
+## Windows <sup><sup>[top](#documentr_top)</sup></sup>
 
 `./gradlew.bat build`
 
@@ -119,23 +254,37 @@ This will compile and assemble the artefacts into the `build/libs/` directory.
 
 Note that this may also run tests (if applicable see the Testing notes)
 
-# Artefact Publishing - Github
 
-This project publishes artefacts to [GitHib](https://github.com/)
+
+<a name="documentr_heading_13"></a>
+
+# Artefact Publishing - Github <sup><sup>[top](#documentr_top)</sup></sup>
+
+This project publishes artefacts to [GitHub](https://github.com/)
 
 > Note that the latest version can be found [https://github.com/synapticloop/copyrightr/releases](https://github.com/synapticloop/copyrightr/releases)
 
 As such, this is not a repository, but a location to download files from.
 
-# Artefact Publishing - Bintray
+
+
+<a name="documentr_heading_14"></a>
+
+# Artefact Publishing - Bintray <sup><sup>[top](#documentr_top)</sup></sup>
 
 This project publishes artefacts to [bintray](https://bintray.com/)
 
 > Note that the latest version can be found [https://bintray.com/synapticloop/maven/copyrightr/view](https://bintray.com/synapticloop/maven/copyrightr/view)
 
-## maven setup
+
+
+<a name="documentr_heading_15"></a>
+
+## maven setup <sup><sup>[top](#documentr_top)</sup></sup>
 
 this comes from the jcenter bintray, to set up your repository:
+
+
 
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -171,9 +320,17 @@ this comes from the jcenter bintray, to set up your repository:
 </settings>
 ```
 
-## gradle setup
+
+
+
+
+<a name="documentr_heading_16"></a>
+
+## gradle setup <sup><sup>[top](#documentr_top)</sup></sup>
 
 Repository
+
+
 
 ```
 repositories {
@@ -183,7 +340,11 @@ repositories {
 }
 ```
 
+
+
 or just
+
+
 
 ```
 repositories {
@@ -191,44 +352,74 @@ repositories {
 }
 ```
 
-# Artefact Publishing - gradle plugin portal
+
+
+
+
+<a name="documentr_heading_17"></a>
+
+# Artefact Publishing - gradle plugin portal <sup><sup>[top](#documentr_top)</sup></sup>
 
 This project publishes artefacts to [the gradle plugin portal](https://plugins.gradle.org/)
 
 > Note that the latest version can be found [https://plugins.gradle.org/plugin/synapticloop.copyrightr](https://plugins.gradle.org/plugin/synapticloop.copyrightr)
 
-## Dependencies - Gradle
+
+
+<a name="documentr_heading_18"></a>
+
+## Dependencies - Gradle <sup><sup>[top](#documentr_top)</sup></sup>
+
+
 
 ```
 dependencies {
-	runtime(group: 'synapticloop', name: 'copyrightr', version: '1.0.1', ext: 'jar')
+	runtime(group: 'synapticloop', name: 'copyrightr', version: '1.1.0', ext: 'jar')
 
-	compile(group: 'synapticloop', name: 'copyrightr', version: '1.0.1', ext: 'jar')
+	compile(group: 'synapticloop', name: 'copyrightr', version: '1.1.0', ext: 'jar')
 }
 ```
+
+
 
 or, more simply for versions of gradle greater than 2.1
 
+
+
 ```
 dependencies {
-	runtime 'synapticloop:copyrightr:1.0.1'
+	runtime 'synapticloop:copyrightr:1.1.0'
 
-	compile 'synapticloop:copyrightr:1.0.1'
+	compile 'synapticloop:copyrightr:1.1.0'
 }
 ```
 
-## Dependencies - Maven
+
+
+
+
+<a name="documentr_heading_19"></a>
+
+## Dependencies - Maven <sup><sup>[top](#documentr_top)</sup></sup>
+
+
 
 ```
 <dependency>
 	<groupId>synapticloop</groupId>
 	<artifactId>copyrightr</artifactId>
-	<version>1.0.1</version>
+	<version>1.1.0</version>
 	<type>jar</type>
 </dependency>
 ```
 
-## Dependencies - Downloads
+
+
+
+
+<a name="documentr_heading_20"></a>
+
+## Dependencies - Downloads <sup><sup>[top](#documentr_top)</sup></sup>
 
 
 You will also need to download the following dependencies:
@@ -246,7 +437,13 @@ You will also need to download the following dependencies:
 
 **NOTE:** You may need to download any dependencies of the above dependencies in turn (i.e. the transitive dependencies)
 
-# License
+
+
+<a name="documentr_heading_23"></a>
+
+# License <sup><sup>[top](#documentr_top)</sup></sup>
+
+
 
 ```
 The MIT License (MIT)
@@ -273,9 +470,10 @@ SOFTWARE.
 ```
 
 
+
+
 --
 
 > `This README.md file was hand-crafted with care utilising synapticloop`[`templar`](https://github.com/synapticloop/templar/)`->`[`documentr`](https://github.com/synapticloop/documentr/)
 
 --
-

@@ -1,4 +1,4 @@
- <a name="#documentr_top"></a>[![Build Status](https://travis-ci.org/synapticloop/copyrightr.svg?branch=master)](https://travis-ci.org/synapticloop/copyrightr) [![Download](https://api.bintray.com/packages/synapticloop/maven/copyrightr/images/download.svg)](https://bintray.com/synapticloop/maven/copyrightr/_latestVersion) [![GitHub Release](https://img.shields.io/github/release/synapticloop/copyrightr.svg)](https://github.com/synapticloop/copyrightr/releases) [![Gradle Plugin Release](https://img.shields.io/badge/gradle%20plugin-1.1.0-blue.svg)](https://plugins.gradle.org/plugin/synapticloop.copyrightr) 
+ <a name="#documentr_top"></a>[![Build Status](https://travis-ci.org/synapticloop/copyrightr.svg?branch=master)](https://travis-ci.org/synapticloop/copyrightr) [![Download](https://api.bintray.com/packages/synapticloop/maven/copyrightr/images/download.svg)](https://bintray.com/synapticloop/maven/copyrightr/_latestVersion) [![GitHub Release](https://img.shields.io/github/release/synapticloop/copyrightr.svg)](https://github.com/synapticloop/copyrightr/releases) [![Gradle Plugin Release](https://img.shields.io/badge/gradle%20plugin-1.1.1-blue.svg)](https://plugins.gradle.org/plugin/synapticloop.copyrightr) 
 
 > **This project requires JVM version of at least 1.7**
 
@@ -9,12 +9,25 @@
 
 <a name="documentr_heading_0"></a>
 
+# copyrightr <sup><sup>[top](#documentr_top)</sup></sup>
+
+
+
+> A simple plugin to update the copyright years in a selection of files
+
+
+
+
+
+
+<a name="documentr_heading_1"></a>
+
 # Table of Contents <sup><sup>[top](#documentr_top)</sup></sup>
 
 
 
- - [Table of Contents](#documentr_heading_0)
- - [copyrightr](#documentr_heading_1)
+ - [copyrightr](#documentr_heading_0)
+ - [Table of Contents](#documentr_heading_1)
    - [Warning](#documentr_heading_2)
    - [How it works](#documentr_heading_3)
  - [Gradle plugin usage](#documentr_heading_5)
@@ -34,19 +47,6 @@
    - [Dependencies - Maven](#documentr_heading_19)
    - [Dependencies - Downloads](#documentr_heading_20)
  - [License](#documentr_heading_23)
-
-
-
-
-
-
-<a name="documentr_heading_1"></a>
-
-# copyrightr <sup><sup>[top](#documentr_top)</sup></sup>
-
-
-
-> A simple plugin to update the copyright years in a selection of files
 
 
 
@@ -112,7 +112,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.synapticloop:copyrightr:1.1.0"
+    classpath "gradle.plugin.synapticloop:copyrightr:1.1.1"
   }
 }
 
@@ -132,7 +132,7 @@ apply plugin: "synapticloop.copyrightr"
 
 ```
 plugins {
-  id "synapticloop.copyrightr" version "1.1.0"
+  id "synapticloop.copyrightr" version "1.1.1"
 }
 ```
 
@@ -156,7 +156,7 @@ copyrightr {
 	// changed, if set to false, this will over-write the files __without__
 	// warning
 	dryRun = false
-	
+
 	// This will be part of the regular expression that is searched for.
 	// This helps to narrow down the lines that will be updated, useful
 	// where there may be other companies that have copyright information
@@ -374,9 +374,9 @@ This project publishes artefacts to [the gradle plugin portal](https://plugins.g
 
 ```
 dependencies {
-	runtime(group: 'synapticloop', name: 'copyrightr', version: '1.1.0', ext: 'jar')
+	runtime(group: 'synapticloop', name: 'copyrightr', version: '1.1.1', ext: 'jar')
 
-	compile(group: 'synapticloop', name: 'copyrightr', version: '1.1.0', ext: 'jar')
+	compile(group: 'synapticloop', name: 'copyrightr', version: '1.1.1', ext: 'jar')
 }
 ```
 
@@ -388,9 +388,9 @@ or, more simply for versions of gradle greater than 2.1
 
 ```
 dependencies {
-	runtime 'synapticloop:copyrightr:1.1.0'
+	runtime 'synapticloop:copyrightr:1.1.1'
 
-	compile 'synapticloop:copyrightr:1.1.0'
+	compile 'synapticloop:copyrightr:1.1.1'
 }
 ```
 
@@ -408,7 +408,7 @@ dependencies {
 <dependency>
 	<groupId>synapticloop</groupId>
 	<artifactId>copyrightr</artifactId>
-	<version>1.1.0</version>
+	<version>1.1.1</version>
 	<type>jar</type>
 </dependency>
 ```

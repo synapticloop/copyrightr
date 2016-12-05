@@ -10,7 +10,7 @@ copyrightr {
 	// changed, if set to false, this will over-write the files __without__
 	// warning
 	dryRun = false
-	
+
 	// This will be part of the regular expression that is searched for.
 	// This helps to narrow down the lines that will be updated, useful
 	// where there may be other companies that have copyright information

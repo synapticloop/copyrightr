@@ -13,7 +13,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'synapticloop:copyrightr:1.1.1'
+		classpath 'gradle.plugin.synapticloop:copyrightr:1.1.1'
 	}
 }
 

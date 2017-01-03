@@ -207,7 +207,6 @@ public class Parser {
 			logger.info(String.format("Not replacing line - the year is current: %s", line));
 			return(line);
 		} else {
-			statistics.incrementNumUpdated();
 			String conversionLine = line;
 			if(overwrite) {
 				// we are going to take the last date and replace it with THIS_YEAR
@@ -217,11 +216,13 @@ public class Parser {
 			}
 
 			if(dryRun) {
+				statistics.incrementNumNotUpdated();
 				logger.warn("DRY RUN enabled, no replacements made");
 				logger.warn(String.format("    before: %s", line));
 				logger.warn(String.format("     after: %s", conversionLine));
 				return(line);
 			} else {
+				statistics.incrementNumUpdated();
 				logger.info(String.format("Converting line from '%s' to '%s'", line, conversionLine));
 				return(conversionLine);
 			}

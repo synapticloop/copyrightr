@@ -26,7 +26,8 @@ plugins {
 	id 'com.gradle.plugin-publish' version '0.9.3'
 	id 'co.riiid.gradle' version '0.4.2'
 	id 'com.jfrog.bintray' version '1.6'
-	id 'synapticloop.documentr' version '2.7.1'
+
+	id 'synapticloop.documentr' version '2.9.0'
 }
 
 apply plugin: 'synapticloop.copyrightr'

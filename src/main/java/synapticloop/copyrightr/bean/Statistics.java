@@ -16,6 +16,11 @@ package synapticloop.copyrightr.bean;
  * this source code or binaries.
  */
 
+/**
+ * This is a simple Bean that holds the statistics for all of the information
+ * about the files that were searched and parsed.
+ *
+ */
 public class Statistics {
 	private int numFiles = 0; // the number of files searched
 	private int numFound = 0; // the number of copyright notices found

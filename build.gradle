@@ -25,7 +25,9 @@ plugins {
 	id 'maven-publish'
 	id 'com.gradle.plugin-publish' version '0.9.3'
 	id 'co.riiid.gradle' version '0.4.2'
-	id 'com.jfrog.bintray' version '1.6'
+	id 'com.jfrog.bintray' version '1.7.3'
+
+	id 'com.github.ben-manes.versions' version '0.14.0'
 
 	id 'synapticloop.documentr' version '2.9.0'
 }
@@ -37,7 +39,7 @@ group = 'synapticloop'
 archivesBaseName = 'copyrightr'
 description = """A simple plugin to update the copyright years in a selection of files"""
 
-version = '1.1.2'
+version = '1.2.0'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -52,10 +54,10 @@ repositories {
 
 // now for all of the dependencies
 dependencies {
-	runtime 'commons-io:commons-io:2.4'
+	runtime 'commons-io:commons-io:2.5'
 
 	compile gradleApi()
-	compile 'commons-io:commons-io:2.4'
+	compile 'commons-io:commons-io:2.5'
 }
 
 // we always want to fail on version conflict

@@ -18,6 +18,7 @@ package synapticloop.copyrightr;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -38,8 +39,11 @@ import synapticloop.copyrightr.bean.Statistics;
 import synapticloop.copyrightr.exception.CopyrightrException;
 import synapticloop.copyrightr.plugin.CopyrightrPluginExtension;
 
+/**
+ * This is the main parser file which will go through each of the files, search 
+ * for the copyright string and (optionally) replace the line in the file.
+ */
 public class Parser {
-
 	private static final String KEY_DIR = "dir";
 	private static final String KEY_INCLUDES = "includes";
 	private static final String KEY_EXCLUDES = "excludes";
@@ -146,7 +150,7 @@ public class Parser {
 		boolean fileMatch = false;
 		logger.info(String.format("Searching for copyright notice in file '%s'", file.getPath()));
 		try {
-			List<String> readLines = FileUtils.readLines(file);
+			List<String> readLines = FileUtils.readLines(file, Charset.defaultCharset());
 			int i = 0;
 			for (String line : readLines) {
 				for (Pattern pattern : compiledPatterns) {

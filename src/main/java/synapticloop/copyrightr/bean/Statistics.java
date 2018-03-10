@@ -52,33 +52,39 @@ public class Statistics {
 
 	/**
 	 * increment the number of files with copyright notices missing
+	 * 
+	 * @param filePath the path of the file 
 	 */
-	public void incrementNumMissing(String fileName) {
-		if(!filesParsed.contains(fileName)) {
-			missingFiles.add(fileName);
-			filesParsed.add(fileName);
+	public void incrementNumMissing(String filePath) {
+		if(!filesParsed.contains(filePath)) {
+			missingFiles.add(filePath);
+			filesParsed.add(filePath);
 		}
 		numMissing++;
 	}
 
 	/**
 	 * increment the number of files that the copyright was updated
+	 * 
+	 * @param filePath the path of the file 
 	 */
-	public void incrementNumUpdated(String fileName) {
-		if(!filesParsed.contains(fileName)) {
-			updatedFiles.add(fileName);
-			filesParsed.add(fileName);
+	public void incrementNumUpdated(String filePath) {
+		if(!filesParsed.contains(filePath)) {
+			updatedFiles.add(filePath);
+			filesParsed.add(filePath);
 		}
 		numUpdated++;
 	}
 
 	/**
 	 * increment the number of files that the copyright was not updated
+	 * 
+	 * @param filePath the path of the file 
 	 */
-	public void incrementNumNotUpdated(String fileName) {
-		if(!filesParsed.contains(fileName)) {
-			notUpdatedFiles.add(fileName);
-			filesParsed.add(fileName);
+	public void incrementNumNotUpdated(String filePath) {
+		if(!filesParsed.contains(filePath)) {
+			notUpdatedFiles.add(filePath);
+			filesParsed.add(filePath);
 		}
 		numNotUpdated++; 
 	}

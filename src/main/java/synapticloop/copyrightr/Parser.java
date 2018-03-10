@@ -215,7 +215,6 @@ public class Parser {
 				}
 			} else {
 				statistics.incrementNumMissing(filePath);
-				logger.warn(String.format("Could not find copyright in file '%s'.", file.getName()));
 			}
 
 		} catch (IOException ex) {

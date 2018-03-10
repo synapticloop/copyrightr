@@ -1,4 +1,4 @@
- <a name="#documentr_top"></a>[![Build Status](https://travis-ci.org/synapticloop/copyrightr.svg?branch=master)](https://travis-ci.org/synapticloop/copyrightr) [![Download](https://api.bintray.com/packages/synapticloop/maven/copyrightr/images/download.svg)](https://bintray.com/synapticloop/maven/copyrightr/_latestVersion) [![GitHub Release](https://img.shields.io/github/release/synapticloop/copyrightr.svg)](https://github.com/synapticloop/copyrightr/releases) [![Gradle Plugin Release](https://img.shields.io/badge/gradle%20plugin-1.2.0-blue.svg)](https://plugins.gradle.org/plugin/synapticloop.copyrightr) 
+ <a name="#documentr_top"></a>[![Build Status](https://travis-ci.org/synapticloop/copyrightr.svg?branch=master)](https://travis-ci.org/synapticloop/copyrightr) [![Download](https://api.bintray.com/packages/synapticloop/maven/copyrightr/images/download.svg)](https://bintray.com/synapticloop/maven/copyrightr/_latestVersion) [![GitHub Release](https://img.shields.io/github/release/synapticloop/copyrightr.svg)](https://github.com/synapticloop/copyrightr/releases) [![Gradle Plugin Release](https://img.shields.io/badge/gradle%20plugin-1.2.1-blue.svg)](https://plugins.gradle.org/plugin/synapticloop.copyrightr) 
 
 > **This project requires JVM version of at least 1.7**
 
@@ -112,7 +112,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.synapticloop:synapticloop.copyrightr:1.2.0"
+    classpath "gradle.plugin.synapticloop:synapticloop.copyrightr:1.2.1"
   }
 }
 
@@ -132,7 +132,7 @@ apply plugin: "synapticloop.copyrightr"
 
 ```
 plugins {
-  id "synapticloop.copyrightr" version "1.2.0"
+  id "synapticloop.copyrightr" version "1.2.1"
 }
 ```
 
@@ -374,9 +374,9 @@ This project publishes artefacts to [the gradle plugin portal](https://plugins.g
 
 ```
 dependencies {
-	runtime(group: 'synapticloop', name: 'copyrightr', version: '1.2.0', ext: 'jar')
+	runtime(group: 'synapticloop', name: 'copyrightr', version: '1.2.1', ext: 'jar')
 
-	compile(group: 'synapticloop', name: 'copyrightr', version: '1.2.0', ext: 'jar')
+	compile(group: 'synapticloop', name: 'copyrightr', version: '1.2.1', ext: 'jar')
 }
 ```
 
@@ -388,9 +388,9 @@ or, more simply for versions of gradle greater than 2.1
 
 ```
 dependencies {
-	runtime 'synapticloop:copyrightr:1.2.0'
+	runtime 'synapticloop:copyrightr:1.2.1'
 
-	compile 'synapticloop:copyrightr:1.2.0'
+	compile 'synapticloop:copyrightr:1.2.1'
 }
 ```
 
@@ -408,7 +408,7 @@ dependencies {
 <dependency>
 	<groupId>synapticloop</groupId>
 	<artifactId>copyrightr</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 	<type>jar</type>
 </dependency>
 ```

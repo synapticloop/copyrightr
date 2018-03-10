@@ -428,12 +428,12 @@ You will also need to download the following dependencies:
 
 ### compile dependencies
 
-  - `commons-io:commons-io:2.5`: (It may be available on one of: [bintray](https://bintray.com/commons-io/maven/commons-io/2.5/view#files/commons-io/commons-io/2.5) [mvn central](http://search.maven.org/#artifactdetails|commons-io|commons-io|2.5|jar))
+  - `commons-io:commons-io:2.6`: (It may be available on one of: [bintray](https://bintray.com/commons-io/maven/commons-io/2.6/view#files/commons-io/commons-io/2.6) [mvn central](http://search.maven.org/#artifactdetails|commons-io|commons-io|2.6|jar))
 
 
 ### runtime dependencies
 
-  - `commons-io:commons-io:2.5`: (It may be available on one of: [bintray](https://bintray.com/commons-io/maven/commons-io/2.5/view#files/commons-io/commons-io/2.5) [mvn central](http://search.maven.org/#artifactdetails|commons-io|commons-io|2.5|jar))
+  - `commons-io:commons-io:2.6`: (It may be available on one of: [bintray](https://bintray.com/commons-io/maven/commons-io/2.6/view#files/commons-io/commons-io/2.6) [mvn central](http://search.maven.org/#artifactdetails|commons-io|commons-io|2.6|jar))
 
 **NOTE:** You may need to download any dependencies of the above dependencies in turn (i.e. the transitive dependencies)
 
@@ -448,7 +448,7 @@ You will also need to download the following dependencies:
 ```
 The MIT License (MIT)
 
-Copyright (c) 2017 synapticloop
+Copyright (c) 2018 synapticloop
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

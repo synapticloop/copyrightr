@@ -1,0 +1,44 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		jcenter()
+		mavenLocal()
+		maven {
+			url "https://plugins.gradle.org/"
+		}
+	}
+
+	dependencies {
+		classpath 'synapticloop:copyrightr:1.2.0'
+	}
+}
+
+plugins {
+	id 'java'
+	id 'eclipse'
+}
+
+apply plugin: 'synapticloop.copyrightr'
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	jcenter()
+}
+
+copyrightr {
+	dryRun = false
+	copyrightHolder = "Synapticloop"
+	includes = [ 
+		"src/**/*.java",
+		"src/**/*.groovy"
+	]
+
+	excludes = [ "**/*.class" ]
+
+	onlyReplaceFirst = true
+
+	yearSeparator = " - "
+
+	failOnMissing = false
+}

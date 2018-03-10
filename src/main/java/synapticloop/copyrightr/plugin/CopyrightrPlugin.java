@@ -1,7 +1,7 @@
 package synapticloop.copyrightr.plugin;
 
 /*
- * Copyright (c) 2016 - 2017 Synapticloop.
+ * Copyright (c) 2016 - 2018 Synapticloop.
  * 
  * All rights reserved.
  * 

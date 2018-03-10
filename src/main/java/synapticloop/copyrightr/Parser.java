@@ -1,7 +1,7 @@
 package synapticloop.copyrightr;
 
 /*
- * Copyright (c) 2016 - 2017 Synapticloop.
+ * Copyright (c) 2016 - 2018 Synapticloop.
  * 
  * All rights reserved.
  * 
@@ -138,17 +138,35 @@ public class Parser {
 		logger.lifecycle("       updated (c): " + statistics.getNumUpdated());
 		logger.lifecycle("   not updated (c): " + statistics.getNumNotUpdated());
 
+		logger.lifecycle("  Copyright notice locations:");
+		logger.lifecycle("  ===========================");
+
+		List<String> notUpdatedFiles = statistics.getNotUpdatedFiles();
+		for (String filePath : notUpdatedFiles) {
+			logger.lifecycle("  [ NOT UPDATED ] " + filePath);
+		}
+
+		List<String> updatedFiles = statistics.getUpdatedFiles();
+		for (String filePath : updatedFiles) {
+			logger.lifecycle("      [ UPDATED ] " + filePath);
+		}
+
+		List<String> missingFiles = statistics.getMissingFiles();
+		for (String filePath : missingFiles) {
+			logger.lifecycle("      [ MISSING ] " + filePath);
+		}
+
 		if(failOnMissing && statistics.getNumMissing() > 0) {
 			throw new GradleScriptException(String.format("Missing copyright notices on %d files, failing...", statistics.getNumMissing()), new Exception("Missing copyright notices in file(s)"));
 		}
-
 	}
 
 	private void parseFile(File file) throws CopyrightrException {
 		statistics.incrementNumFiles();
 
 		boolean fileMatch = false;
-		logger.info(String.format("Searching for copyright notice in file '%s'", file.getPath()));
+		String filePath = file.getPath();
+		logger.info(String.format("Searching for copyright notice in file '%s'", filePath));
 		try {
 			List<String> readLines = FileUtils.readLines(file, Charset.defaultCharset());
 			int i = 0;
@@ -183,7 +201,7 @@ public class Parser {
 							break;
 						}
 
-						readLines.set(i, getReplacementLine(line, group, regionStart, regionEnd, overwrite));
+						readLines.set(i, getReplacementLine(filePath, line, group, regionStart, regionEnd, overwrite));
 						statistics.incrementNumFound();
 						break;
 					}
@@ -196,18 +214,18 @@ public class Parser {
 					FileUtils.writeLines(file, readLines, false);
 				}
 			} else {
-				statistics.incrementNumMissing();
+				statistics.incrementNumMissing(filePath);
 				logger.warn(String.format("Could not find copyright in file '%s'.", file.getName()));
 			}
 
 		} catch (IOException ex) {
-			throw new CopyrightrException(String.format("Could not update copyright for file '%s', message was '%s'", file.getPath(), ex.getMessage()), ex);
+			throw new CopyrightrException(String.format("Could not update copyright for file '%s', message was '%s'", filePath, ex.getMessage()), ex);
 		}
 	}
 
-	private String getReplacementLine(String line, String group, int regionStart, int regionEnd, boolean overwrite) {
+	private String getReplacementLine(String filePath, String line, String group, int regionStart, int regionEnd, boolean overwrite) {
 		if(THIS_YEAR.equals(group)) {
-			statistics.incrementNumNotUpdated();
+			statistics.incrementNumNotUpdated(filePath);
 			logger.info(String.format("Not replacing line - the year is current: %s", line));
 			return(line);
 		} else {
@@ -220,13 +238,13 @@ public class Parser {
 			}
 
 			if(dryRun) {
-				statistics.incrementNumNotUpdated();
+				statistics.incrementNumNotUpdated(filePath);
 				logger.warn("DRY RUN enabled, no replacements made");
 				logger.warn(String.format("    before: %s", line));
 				logger.warn(String.format("     after: %s", conversionLine));
 				return(line);
 			} else {
-				statistics.incrementNumUpdated();
+				statistics.incrementNumUpdated(filePath);
 				logger.info(String.format("Converting line from '%s' to '%s'", line, conversionLine));
 				return(conversionLine);
 			}

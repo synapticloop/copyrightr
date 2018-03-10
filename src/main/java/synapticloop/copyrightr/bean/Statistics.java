@@ -1,7 +1,13 @@
 package synapticloop.copyrightr.bean;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /*
- * Copyright (c) 2016 - 2017 Synapticloop.
+ * Copyright (c) 2016 - 2018 Synapticloop.
  * 
  * All rights reserved.
  * 
@@ -28,6 +34,12 @@ public class Statistics {
 	private int numUpdated = 0; // the number of copyright notices updated
 	private int numNotUpdated = 0; // the number of copyright notices not updated
 
+	private Set<String> filesParsed = new HashSet<String>();
+
+	private List<String> missingFiles = new ArrayList<String>();
+	private List<String> updatedFiles = new ArrayList<String>();
+	private List<String> notUpdatedFiles = new ArrayList<String>();
+
 	/**
 	 * increment the number of files
 	 */
@@ -41,17 +53,35 @@ public class Statistics {
 	/**
 	 * increment the number of files with copyright notices missing
 	 */
-	public void incrementNumMissing() { numMissing++; }
+	public void incrementNumMissing(String fileName) {
+		if(!filesParsed.contains(fileName)) {
+			missingFiles.add(fileName);
+			filesParsed.add(fileName);
+		}
+		numMissing++;
+	}
 
 	/**
 	 * increment the number of files that the copyright was updated
 	 */
-	public void incrementNumUpdated() { numUpdated++; }
+	public void incrementNumUpdated(String fileName) {
+		if(!filesParsed.contains(fileName)) {
+			updatedFiles.add(fileName);
+			filesParsed.add(fileName);
+		}
+		numUpdated++;
+	}
 
 	/**
 	 * increment the number of files that the copyright was not updated
 	 */
-	public void incrementNumNotUpdated() { numNotUpdated++; }
+	public void incrementNumNotUpdated(String fileName) {
+		if(!filesParsed.contains(fileName)) {
+			notUpdatedFiles.add(fileName);
+			filesParsed.add(fileName);
+		}
+		numNotUpdated++; 
+	}
 
 	/**
 	 * Get the total number of files scanned
@@ -87,4 +117,25 @@ public class Statistics {
 	 * @return the number of files that were not updated
 	 */
 	public int getNumNotUpdated() { return this.numNotUpdated; }
+
+	/**
+	 * Get the list of files that are missing the copyright notice
+	 * 
+	 * @return the list of files that are missing the copyright notice
+	 */
+	public List<String> getMissingFiles() { return missingFiles; }
+
+	/**
+	 * Get the list of files that were updated
+	 * 
+	 * @return the list of files that were updated
+	 */
+	public List<String> getUpdatedFiles() { return updatedFiles; }
+
+	/**
+	 * Get the list of files that were not updated
+	 * 
+	 * @return the list of files that were not updated
+	 */
+	public List<String> getNotUpdatedFiles() { return notUpdatedFiles; }
 }

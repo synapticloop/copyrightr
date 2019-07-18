@@ -27,7 +27,7 @@ repositories {
 }
 
 copyrightr {
-	dryRun = true
+	dryRun = false
 	copyrightHolder = "Synapticloop"
 	includes = [ 
 		"src/**/*.java",

@@ -6,7 +6,7 @@ import java.nio.charset.Charset;
 import org.apache.commons.io.IOUtils;
 
 /*
- * Copyright (c) 2016 - 2018 Synapticloop.
+ * Copyright (c) 2016 - 2019 Synapticloop.
  * 
  * All rights reserved.
  * 

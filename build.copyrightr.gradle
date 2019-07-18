@@ -9,7 +9,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'synapticloop:copyrightr:1.2.2'
+		classpath 'synapticloop:copyrightr:1.3.0'
 	}
 }
 
@@ -27,7 +27,7 @@ repositories {
 }
 
 copyrightr {
-	dryRun = false
+	dryRun = true
 	copyrightHolder = "Synapticloop"
 	includes = [ 
 		"src/**/*.java",

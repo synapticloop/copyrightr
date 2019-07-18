@@ -130,6 +130,7 @@ public class Parser {
 		}
 
 		// print out the statistics
+		logger.lifecycle("");
 		logger.lifecycle("  Copyrightr found the following:");
 		logger.lifecycle("  ===============================");
 		logger.lifecycle("    Searched files: " + statistics.getNumFiles());
@@ -138,6 +139,7 @@ public class Parser {
 		logger.lifecycle("       updated (c): " + statistics.getNumUpdated());
 		logger.lifecycle("   not updated (c): " + statistics.getNumNotUpdated());
 
+		logger.lifecycle("");
 		logger.lifecycle("  Copyright notice locations:");
 		logger.lifecycle("  ===========================");
 
@@ -201,6 +203,10 @@ public class Parser {
 							break;
 						}
 
+						if(dryRun) {
+							logger.warn("DRY RUN enabled, no replacements will be made.");
+						}
+
 						readLines.set(i, getReplacementLine(filePath, line, group, regionStart, regionEnd, overwrite));
 						statistics.incrementNumFound();
 						break;
@@ -236,9 +242,10 @@ public class Parser {
 				conversionLine = String.format("%s%s%s%s%s", line.substring(0, regionStart), group, yearSeparator, THIS_YEAR, line.substring(regionEnd));
 			}
 
+			logger.warn(String.format("      File: '%s'", filePath));
+
 			if(dryRun) {
 				statistics.incrementNumNotUpdated(filePath);
-				logger.warn("DRY RUN enabled, no replacements made");
 				logger.warn(String.format("    before: %s", line));
 				logger.warn(String.format("     after: %s", conversionLine));
 				return(line);

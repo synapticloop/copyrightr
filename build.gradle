@@ -39,10 +39,10 @@ group = 'synapticloop'
 archivesBaseName = 'copyrightr'
 description = """A simple plugin to update the copyright years in a selection of files"""
 
-version = '1.2.1'
+version = '1.2.2'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 
 // all of the repositories that this project will use
@@ -54,10 +54,9 @@ repositories {
 
 // now for all of the dependencies
 dependencies {
-	runtime 'commons-io:commons-io:2.6'
+	compileOnly gradleApi()
 
-	compile gradleApi()
-	compile 'commons-io:commons-io:2.6'
+	implementation 'commons-io:commons-io:2.6'
 }
 
 // we always want to fail on version conflict
@@ -113,13 +112,6 @@ github {
 		'build/libs/' + archivesBaseName + '-' + version + '-all.jar',
 		'build/libs/' + archivesBaseName + '-' + version + '.jar'
 	]
-}
-
-def javaApiUrl = 'http://docs.oracle.com/javase/1.7.0/docs/api/'
-def groovyApiUrl = 'http://groovy.codehaus.org/gapi/'
-
-tasks.withType(Javadoc) {
-	options.links(javaApiUrl, groovyApiUrl)
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {

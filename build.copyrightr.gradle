@@ -9,7 +9,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'synapticloop:copyrightr:1.2.1'
+		classpath 'synapticloop:copyrightr:1.2.2'
 	}
 }
 

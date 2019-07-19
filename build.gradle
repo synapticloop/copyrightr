@@ -11,11 +11,6 @@ buildscript {
 			url "https://plugins.gradle.org/"
 		}
 	}
-
-	dependencies {
-		classpath 'synapticloop:copyrightr:1.3.0'
-		classpath 'synapticloop:documentr:3.0.0'
-	}
 }
 
 // list all of the plugins for this project
@@ -30,11 +25,8 @@ plugins {
 
 	id 'com.github.ben-manes.versions' version '0.17.0'
 
-//	id 'synapticloop.documentr' version '3.0.0'
+	id 'synapticloop.documentr' version '3.0.0'
 }
-
-apply plugin: 'synapticloop.copyrightr'
-apply plugin: 'synapticloop.documentr'
 
 // textual information for this project
 group = 'synapticloop'
@@ -67,40 +59,11 @@ configurations.all {
 		failOnVersionConflict()
 	}
 }
-
-copyrightr {
-	// If set to true (default), this will only log what would have been 
-	// changed, if set to false, this will over-write the files __without__
-	// warning
-	dryRun = false
-
-	// This will be part of the regular expression that is searched for.
-	// This helps to narrow down the lines that will be updated, useful
-	// where there may be other companies that have copyright information
-	copyrightHolder = "Synapticloop"
-
-	// Which files are to be included, by default the included files are
-	// - src/**/*.java, and
-	// - src/**/*.groovy
-	includes = [ 
-	  "src/**/*.java",
-	  "src/**/*.groovy"
-	]
-
-	// which files are to be excluded, by default there are no exclusions
-	excludes = [ "**/*.class" ]
-
-	// whether to only replace the first found instance, by default this
-	// is set to true
-	onlyReplaceFirst = true
-
-	// the year separator to use
-	yearSeparator = " - "
-
-	// Whether to fail the build on any missing copyright notifications, by
-	// default, this is set to false
-	failOnMissing = false
-}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+//
+// see the file test.copyrightr.gradle for running and testing this 
+//
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 github {
 	owner = group

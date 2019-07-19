@@ -1,4 +1,6 @@
 language: java
+
 jdk:
-  - oraclejdk9
+  - oraclejdk12
+
 script: ./gradlew --info build
